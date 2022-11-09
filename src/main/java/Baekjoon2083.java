@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class Baekjoon2083 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while(true) {
+            String name = sc.next();
+            int age = sc.nextInt();
+            int kg = sc.nextInt();
+
+            if(name.equals("#") && age == 0 && kg == 0) {
+                break;
+            }
+
+            if(age > 17 || kg > 80) {
+                System.out.println(name + " senior");
+            }else {
+                System.out.println(name + " junior");
+            }
+
+        }
+        sc.close();
+    }
+}
