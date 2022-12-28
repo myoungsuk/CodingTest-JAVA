@@ -3,21 +3,20 @@ package B3_Baekjoon;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Scanner;
+
 
 public class Baekjoon6321 {
     public static void main(String[] args) throws IOException {
-        var br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int n = Integer.parseInt(br.readLine());
+        int testCase = Integer.parseInt(br.readLine());
 
-        for(int i = 0; i < n; i++){
-            String[] text = br.readLine().split("");
+        for(int i=0; i<testCase; i++){
+            String[] textIBM = br.readLine().split("");
 
-            System.out.println("String #" + i+1);
-
-            for(int j = 0; j < text.length; j++){
-                char tmp = text[j].charAt(0);
+            System.out.println("String #"+(i+1));
+            for(int j=0; j<textIBM.length; j++){
+                char tmp = textIBM[j].charAt(0);
                 tmp += 1;
                 if(tmp == 91){
                     tmp = 65;
@@ -26,7 +25,6 @@ public class Baekjoon6321 {
             }
             System.out.println();
             System.out.println();
-
         }
     }
 }

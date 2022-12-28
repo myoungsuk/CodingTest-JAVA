@@ -4,16 +4,21 @@ import java.util.Scanner;
 
 public class Baekjoon11721 {
     public static void main(String[] args){
-        var scanner = new Scanner(System.in);
+        var scan = new Scanner(System.in);
 
-        String str = scanner.next();
+        String N = scan.next();
 
-        for(int i = 0; i<str.length(); i++){
-            System.out.print(str.charAt(i));
-            if(i % 10 == 9){
+        for(int i = 0; i < N.length(); i++){
+            char c = N.charAt(i);
+
+            if(i == 10){
                 System.out.println();
             }
+            System.out.print(c);
+        }
+
+
+
         }
 
     }
-}
