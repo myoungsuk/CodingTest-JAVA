@@ -1,34 +1,39 @@
 package Programmers;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class ProgrammingBasic {
     public static void main(String[] args) {
-        int[][] queries = {{2, 3}, {0, 7}, {5, 9}, {6, 10}};
-        solution("rermgorpsam", queries);
+        int[] progresses = {95, 90, 99, 99, 80, 99};
+        int[] speeds = {1,1,1,1,1,1};
+        solution(progresses, speeds);
     }
 
-    public static String solution(String my_string, int[][] queries) {
-        String answer = "";
-        StringBuilder sb = new StringBuilder(my_string);
+    public static int[] solution(int[] progresses, int[] speeds) {
+        Queue<Integer> queue = new LinkedList<>();
 
-        for (int i = 0; i < queries.length; i++) {
-            int start = queries[i][0];
-            int startcount = start;
-            int end = queries[i][1];
-            int endcount = end;
-
-            for (int j = 0; j < (endcount - startcount) / 2 + 1; j++) {
-                char temp = sb.charAt(start);
-                sb.setCharAt(start, sb.charAt(end));
-                sb.setCharAt(end, temp);
-                answer = sb.toString();
-                start++;
-                end--;
+        for(int i = 0; i < progresses.length; i++){
+            int remain = (100 - progresses[i]); //남아있는 정도
+            int remainDay = remain / speeds[i]; //100이상을 채우기 위한 날짜 수
+            if(remain % speeds[i] != 0){
+                remainDay += 1; // 0으로 딱 나누어 떨어지지 않으면 1을 더한다
             }
+            queue.add(remainDay); //큐에 추가하기
         }
-        return answer;
+
+        ArrayList<Integer> answer = new ArrayList<>();
+
+        while(!queue.isEmpty()){
+            int release = queue.poll(); // queue 의 첫번째  호출
+            int count = 1; //호출을 했기때문에 1부터 시작
+            while(!queue.isEmpty() && queue.peek() <= release){ //peek 값이 앞전에 poll 한 값보다 작거나 같으면
+                queue.poll(); //같이 poll 해준다
+                count++; //횟수 더해준다
+            }
+            answer.add(count);
+        }
+        return answer.stream().mapToInt(i -> i).toArray(); //스트림을 이용한 리턴
     }
-
-
 }
-
