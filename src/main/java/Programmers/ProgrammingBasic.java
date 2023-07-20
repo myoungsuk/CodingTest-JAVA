@@ -1,52 +1,32 @@
 package Programmers;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class ProgrammingBasic {
     public static void main(String[] args) {
-        solution("one4seveneight");
+
+        solution("aacddefg");
     }
 
-    public static int solution(String s) {
+    public static String solution(String s) {
         String answer = "";
-        String other = "";
-        for(int i = 0; i < s.length(); i++){
-            if(Character.isDigit(s.charAt(i))){
-                answer += s.charAt(i);
-            }else{
-                other += s.charAt(i);
-                if(other.equals("zero")){
-                    answer += "0";
-                    other = "";
-                }else if(other.equals("one")){
-                    answer += "1";
-                    other = "";
-                }else if(other.equals("two")){
-                    answer += "2";
-                    other = "";
-                }else if(other.equals("three")) {
-                    answer += "3";
-                    other = "";
-                }else if(other.equals("four")) {
-                    answer += "4";
-                    other = "";
-                }else if(other.equals("five")) {
-                    answer += "5";
-                    other = "";
-                }else if(other.equals("six")) {
-                    answer += "6";
-                    other = "";
-                }else if(other.equals("seven")) {
-                    answer += "7";
-                    other = "";
-                }else if(other.equals("eight")) {
-                    answer += "8";
-                    other = "";
-                }else if(other.equals("nine")) {
-                    answer += "9";
-                    other = "";
-                }
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < s.length(); i++) {
+            if (i > 0 && s.charAt(i) == s.charAt(i - 1)) {
+                continue;
+
+            } else if (i < s.length() - 1 && s.charAt(i) == s.charAt(i + 1)) {
+                continue;
             }
+            sb.append(s.charAt(i));
+            System.out.println(sb);
+
         }
-        System.out.println(answer);
-        return Integer.parseInt(answer);
+        answer = sb.toString();
+        return answer;
     }
+
 }
