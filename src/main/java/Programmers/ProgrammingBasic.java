@@ -1,22 +1,19 @@
 package Programmers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ProgrammingBasic {
     public static void main(String[] args) {
+        int[] arr = {12, 4, 15, 46, 38, -2, 15};
+        int[][] intervals = {{1,3}, {0, 4}};
 
-
-        solution("Naver");
+        solution(arr, intervals);
     }
 
-    public static String solution(String s) {
-        StringBuilder sb = new StringBuilder();
+    public static int[] solution(int[] arr, int[][] intervals) {
+        int[] answer = {};
 
-        for(int i = 0; i < s.length(); i++){
-            if(Character.isLowerCase(s.charAt(i))){
-                sb.append(Character.toUpperCase(s.charAt(i)));
-            }else{
-                sb.append(Character.toLowerCase(s.charAt(i)));
-            }
-        }
-        return sb.toString();
+        return answer;
     }
 }
