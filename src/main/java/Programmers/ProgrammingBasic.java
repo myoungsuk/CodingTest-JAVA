@@ -1,26 +1,19 @@
 package Programmers;
 
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class ProgrammingBasic {
     public static void main(String[] args) {
-        int[] arr = {0, 1, 2, 3, 4, 5};
-        int[] query = {4, 1, 2};
 
-        solution(arr , query);
+        solution("ab6CDE443fgh22iJKlmn1o", "6CD");
     }
 
-    public static int[] solution(int[] arr, int[] query) {
-       for(int i = 0; i < query.length; i++){
-           if(i % 2 == 0 || i == 0){
-             arr = Arrays.copyOfRange(arr, 0 , query[i] + 1);
-           }else{
-              arr = Arrays.copyOfRange(arr, query[i] +1, arr.length);
-           }
-       }
-       return arr;
+    public static int solution(String str1, String str2) {
+
+        if(str1.contains(str2)){
+            return 1;
+        }else{
+            return 2;
+        }
     }
 }
