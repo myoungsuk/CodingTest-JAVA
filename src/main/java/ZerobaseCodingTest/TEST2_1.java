@@ -1,8 +1,8 @@
-package Programmers;
+package ZerobaseCodingTest;
 
 import java.util.*;
 
-public class ProgrammingBasic {
+public class TEST2_1 {
     public static void main(String[] args) {
 
         int[] arr = {6, 2, 12, 8, 5, 9};
