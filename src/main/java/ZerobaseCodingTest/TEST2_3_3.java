@@ -3,16 +3,17 @@ package ZerobaseCodingTest;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class TEST2_3_3 {
     public static void main(String[] args) {
 
-        String S = "2*3+5/6*3+15";
-        solution(S);
+        solution(25, 2);
     }
 
-    public static double solution(String S) {
-        double answer = 0;
+    public static int solution(int N, int K) {
+        int answer = 0;
+
         return answer;
     }
 }

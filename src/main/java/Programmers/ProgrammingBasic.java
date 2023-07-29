@@ -5,22 +5,16 @@ import java.util.*;
 public class ProgrammingBasic {
     public static void main(String[] args) {
 
-        int[] arr = {6, 2, 12, 8, 5, 9};
-        solution(arr);
+        int[] arr = {0, 1, 2, 3, 4};
+        int[][] queries = {{0,1}, {1, 2}, {2, 3}};
+
+        solution(arr, queries);
+
     }
 
-    public static int solution(int[] arr) {
-        int answer = 0;
+    public static int[] solution(int[] arr, int[][] queries) {
+        int[] answer = {};
 
-        Arrays.sort(arr);
-
-        for(int i = arr.length - 1; i >= 2; i--){
-            if(arr[i] < arr[i-1] + arr[i-2]){
-                return arr[i] + arr[i -1] + arr[i-2];
-            }else{
-                continue;
-            }
-        }
         return answer;
     }
 }
