@@ -1,25 +1,21 @@
 package ZerobaseCodingTest;
 
-
+import java.util.*;
 public class TEST2_5_2 {
     public static void main(String[] args) {
 
-        String sentence = "Hello every world";
-        String word = "every";
+        int[] nums = {1, 3, 5, 3, 2};
 
-        solution(sentence, word);
+        solution(nums, 3);
 
     }
 
-    public static int solution(String sentence, String word) {
-        String[] words = sentence.split(" ");
-
-        for(int i = 0; i < words.length; i++){
-            if(words[i].equals(word)){
+    public static int solution(int[] nums, int n) {
+        for(int i = 0; i < nums.length; i++){
+            if(nums[i] == n){
                 return i;
             }
         }
-
         return -1;
     }
 }
