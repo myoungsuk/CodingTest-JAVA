@@ -5,30 +5,22 @@ import java.util.*;
 public class ProgrammingBasic {
     public static void main(String[] args) {
 
-        int[] arr = {1, 2, 3, 100, 99, 98};
+        String[] strArr = {"AAA","BBB","CCC","DDD"};
 
-        solution(arr);
+
+        solution(strArr);
 
     }
 
-    public static int solution(int[] arr) {
-        int count = 0;
-
-        while(true){
-            int[] arrcopy = arr.clone();
-            for(int i = 0; i < arr.length; i++){
-                if(arr[i] >= 50 && arr[i] % 2 == 0){
-                    arr[i] = arr[i] / 2;
-                }else if(arr[i] < 50 && arr[i] % 2 == 1){
-                    arr[i] = arr[i] * 2 + 1;
-                }
-            }
-            count++;
-            System.out.println(Arrays.toString(arr));
-            if(Arrays.equals(arr, arrcopy)){
-                break;
+    public static String[] solution(String[] strArr) {
+        for(int i = 0; i < strArr.length; i++){
+            if(i % 2 == 1){
+                strArr[i].toUpperCase();
+            }else{
+                strArr[i].toLowerCase();
             }
         }
-        return count - 1;
+        System.out.println(Arrays.toString(strArr));
+        return strArr;
     }
 }
