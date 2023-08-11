@@ -1,37 +1,42 @@
 package Programmers;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 public class ProgrammingBasic {
     public static void main(String[] args) {
 
-        int numer1 = 1;
-        int denom1 = 2;
-        int numer2 = 3;
-        int denom2 = 4;
+        int[] arr = {0, 1, 1, 1, 0};
 
 
-        solution(numer1 , denom1 , numer2, denom2);
+        solution(arr);
 
     }
 
-    public static int[] solution(int numer1, int denom1, int numer2, int denom2) {
+    public static int[] solution(int[] arr) {
 
-        int a = numer1 * denom2 + numer2 * denom1;
-        int b = denom1 * denom2;
+        int[] stk = new int[arr.length];
+        int top = -1;
 
-        int gcd = gcd(a, b);
-        a /= gcd;
-        b /= gcd;
+        for(int i = 0; i < arr.length; i++){
+            if( top == -1 || stk[top] != arr[i]) {
+                stk[++top] = arr[i];
+            }else{
+                top--;
+            }
+        }
 
-        return new int[] {a, b};
-    }
-
-    public static int gcd(int a, int b){
-        if(b == 0){
-            return a;
-        } else{
-            return gcd(b, a % b);
+        if(top == -1){
+            return new int[] {-1};
+        }else{
+            int[] result = new int[top +1];
+            for(int i = 0; i <= top; i++){
+                result[i] = stk[i];
+            }
+            return result;
         }
     }
 }
