@@ -1,42 +1,30 @@
 package Programmers;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.*;
 
 public class ProgrammingBasic {
     public static void main(String[] args) {
 
-        int[] arr = {0, 1, 1, 1, 0};
-
-
-        solution(arr);
-
+        int[] arr = {0, 1, 1, 1, 1};
+        solution(arr, 4);
     }
 
-    public static int[] solution(int[] arr) {
+    public static List<Integer> solution(int[] arr, int k) {
 
-        int[] stk = new int[arr.length];
-        int top = -1;
+        List<Integer> list = new ArrayList<>();
+        int count = 0;
 
-        for(int i = 0; i < arr.length; i++){
-            if( top == -1 || stk[top] != arr[i]) {
-                stk[++top] = arr[i];
-            }else{
-                top--;
+        for(int i = 0; i < arr.length && count < k; i++){
+            if(i == 0 || arr[i] != arr[i-1]) {
+                list.add(arr[i]);
+                count++;
             }
         }
 
-        if(top == -1){
-            return new int[] {-1};
-        }else{
-            int[] result = new int[top +1];
-            for(int i = 0; i <= top; i++){
-                result[i] = stk[i];
-            }
-            return result;
+        while(list.size() < k){
+            list.add(-1);
         }
+
+        return list;
     }
 }
