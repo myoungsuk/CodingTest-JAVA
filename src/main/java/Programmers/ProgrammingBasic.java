@@ -5,18 +5,15 @@ import java.util.*;
 public class ProgrammingBasic {
     public static void main(String[] args) {
 
-        int[] rank = {3, 7, 2, 5, 4, 6, 1};
-        boolean[] attendance = {false, true, true, true, true, false, false};
-        solution(rank , attendance);
+        String n_str = "0010";
+        solution(n_str);
     }
 
-    public int solution(String num_str) {
+    public static String solution(String n_str) {
 
-        int answer = 0;
-        for(int i = 0; i < num_str.length(); i++){
-            answer += Integer.parseInt(String.valueOf(num_str.charAt(i)));
+        while(n_str.startsWith("0") && n_str.length() > 1){
+            n_str = n_str.substring(1);
         }
-
-        return answer;
+        return n_str;
     }
 }
