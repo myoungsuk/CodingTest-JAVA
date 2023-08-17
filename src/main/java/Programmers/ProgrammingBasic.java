@@ -1,19 +1,35 @@
 package Programmers;
 
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
+import java.util.stream.Stream;
 
 public class ProgrammingBasic {
     public static void main(String[] args) {
 
-        String n_str = "0010";
-        solution(n_str);
+        int hp = 23;
+
+        solution(hp);
     }
 
-    public static String solution(String n_str) {
+    public static int solution(int hp) {
+        int count = 0;
 
-        while(n_str.startsWith("0") && n_str.length() > 1){
-            n_str = n_str.substring(1);
+        while(hp > 0) {
+            if(hp % 5 == 0) {
+                count += hp / 5;
+                hp = 0;
+            } else if(hp >= 3) {
+                hp -= 3;
+                count++;
+            } else {
+                count += hp;
+                hp = 0;
+            }
         }
-        return n_str;
+
+        return count;
     }
 }
