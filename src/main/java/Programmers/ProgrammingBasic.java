@@ -1,35 +1,26 @@
 package Programmers;
 
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.*;
-import java.util.stream.Stream;
-
 public class ProgrammingBasic {
     public static void main(String[] args) {
 
-        int hp = 23;
+        int balls = 3;
+        int share = 2;
 
-        solution(hp);
+
+        solution(balls, share);
     }
 
-    public static int solution(int hp) {
-        int count = 0;
+    public static int solution(int balls, int share) {
+        int answer = 0;
+        answer = factorial(balls, share);
+        return answer;
+    }
 
-        while(hp > 0) {
-            if(hp % 5 == 0) {
-                count += hp / 5;
-                hp = 0;
-            } else if(hp >= 3) {
-                hp -= 3;
-                count++;
-            } else {
-                count += hp;
-                hp = 0;
-            }
+    public static int factorial(int n , int m){
+        if( m == 0 || n == m){
+            return 1;
+        }else{
+            return factorial(n -1 , m - 1) + factorial(n-1, m);
         }
-
-        return count;
     }
 }
