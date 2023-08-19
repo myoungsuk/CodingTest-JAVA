@@ -1,26 +1,22 @@
 package Programmers;
 
+import java.util.*;
+
 public class ProgrammingBasic {
     public static void main(String[] args) {
 
-        int balls = 3;
-        int share = 2;
 
-
-        solution(balls, share);
+        int n = 3;
+        solution(n);
     }
 
-    public static int solution(int balls, int share) {
-        int answer = 0;
-        answer = factorial(balls, share);
-        return answer;
-    }
+    public static int[][] solution(int n) {
+        int[][] answer = new int[n][n];
 
-    public static int factorial(int n , int m){
-        if( m == 0 || n == m){
-            return 1;
-        }else{
-            return factorial(n -1 , m - 1) + factorial(n-1, m);
+        for(int i = 0; i < n; i++){
+            answer[i][i] = 1;
         }
+
+        return answer;
     }
 }
