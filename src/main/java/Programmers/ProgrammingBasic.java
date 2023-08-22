@@ -3,20 +3,21 @@ package Programmers;
 import java.util.*;
 
 public class ProgrammingBasic {
+
     public static void main(String[] args) {
 
-
-        int n = 3;
-        solution(n);
+        String my_string = "bus";
+        solution(my_string);
     }
 
-    public static int[][] solution(int n) {
-        int[][] answer = new int[n][n];
+    public static String solution(String my_string) {
+        String checkSpell= "aeiou";
 
-        for(int i = 0; i < n; i++){
-            answer[i][i] = 1;
+        for(int i = 0; i < checkSpell.length(); i++){
+            char ch = checkSpell.charAt(i);
+            my_string = my_string.replace(String.valueOf(ch), "");
         }
 
-        return answer;
+        return my_string;
     }
 }
