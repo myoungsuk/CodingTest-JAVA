@@ -6,18 +6,28 @@ public class ProgrammingBasic {
 
     public static void main(String[] args) {
 
-        String my_string = "bus";
-        solution(my_string);
+        int n = 12;
+        solution(n);
     }
 
-    public static String solution(String my_string) {
-        String checkSpell= "aeiou";
+    public static int[] solution(int n) {
+        Set<Integer> prime = new LinkedHashSet<>();
 
-        for(int i = 0; i < checkSpell.length(); i++){
-            char ch = checkSpell.charAt(i);
-            my_string = my_string.replace(String.valueOf(ch), "");
+        for(int i = 2; i <= n; i++){
+            while(n % i == 0){
+                prime.add(i);
+                n /= i;
+            }
         }
 
-        return my_string;
+        int[] result = new int[prime.size()];
+        int i = 0;
+
+        for(int factor : prime){
+            result[i++] = factor;
+        }
+
+        return result;
     }
+
 }
