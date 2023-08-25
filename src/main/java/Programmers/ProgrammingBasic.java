@@ -6,28 +6,16 @@ public class ProgrammingBasic {
 
     public static void main(String[] args) {
 
-        int n = 12;
-        solution(n);
+        int[] sides = {1, 2, 3};
+        System.out.println(solution(sides));
     }
 
-    public static int[] solution(int n) {
-        Set<Integer> prime = new LinkedHashSet<>();
-
-        for(int i = 2; i <= n; i++){
-            while(n % i == 0){
-                prime.add(i);
-                n /= i;
-            }
+    public static int solution(int[] sides) {
+        Arrays.sort(sides);
+        if(sides[0] + sides[1] > sides[2]){
+            return 1;
         }
-
-        int[] result = new int[prime.size()];
-        int i = 0;
-
-        for(int factor : prime){
-            result[i++] = factor;
-        }
-
-        return result;
+        return 2;
     }
 
 }
