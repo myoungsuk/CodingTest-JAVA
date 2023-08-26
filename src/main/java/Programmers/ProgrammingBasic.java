@@ -6,16 +6,23 @@ public class ProgrammingBasic {
 
     public static void main(String[] args) {
 
-        int[] sides = {1, 2, 3};
-        System.out.println(solution(sides));
+        int n = 24;
+        System.out.println(solution(n));
     }
 
-    public static int solution(int[] sides) {
-        Arrays.sort(sides);
-        if(sides[0] + sides[1] > sides[2]){
-            return 1;
+    public static List<Integer> solution(int n) {
+
+        List<Integer> list = new ArrayList<>();
+
+        for(int i = 1; i <= n; i++){
+            if(n % i == 0){
+                list.add(i);
+            }
         }
-        return 2;
+
+        return list;
     }
+
+
 
 }
