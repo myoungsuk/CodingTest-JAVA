@@ -6,21 +6,29 @@ public class ProgrammingBasic {
 
     public static void main(String[] args) {
 
-        int n = 24;
-        System.out.println(solution(n));
+        String[] quiz = {"3 - 4 = -3", "5 + 6 = 11"};
+        System.out.println(Arrays.toString(solution(quiz)));
     }
 
-    public static List<Integer> solution(int n) {
+    public static String[] solution(String[] quiz) {
+        String[] answer = new String[quiz.length];
 
-        List<Integer> list = new ArrayList<>();
+        for(int i = 0; i < quiz.length; i++){
+            String[] parts = quiz[i].split(" ");
+            int x = Integer.parseInt(parts[0]);
+            int y = Integer.parseInt(parts[2]);
+            int z = Integer.parseInt(parts[4]);
+            String operator = parts[1];
 
-        for(int i = 1; i <= n; i++){
-            if(n % i == 0){
-                list.add(i);
+            System.out.println(Arrays.toString(parts));
+            if(operator.equals("+")){
+                answer[i] = (x + y == z) ? "O" : "X";
+            }else{
+                answer[i] = (x - y == z) ? "O" : "X";
             }
         }
 
-        return list;
+        return answer;
     }
 
 
