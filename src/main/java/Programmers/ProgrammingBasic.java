@@ -4,27 +4,24 @@ import java.util.*;
 
 public class ProgrammingBasic {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
-        String[] quiz = {"3 - 4 = -3", "5 + 6 = 11"};
-        System.out.println(Arrays.toString(solution(quiz)));
+        String my_str = "abc1Addfggg4556b";
+        int n = 6;
+        System.out.println(solution(my_str, n));
     }
 
-    public static String[] solution(String[] quiz) {
-        String[] answer = new String[quiz.length];
+    public static List<String> solution(String my_str, int n) {
+        List<String> answer = new ArrayList<>();
 
-        for(int i = 0; i < quiz.length; i++){
-            String[] parts = quiz[i].split(" ");
-            int x = Integer.parseInt(parts[0]);
-            int y = Integer.parseInt(parts[2]);
-            int z = Integer.parseInt(parts[4]);
-            String operator = parts[1];
-
-            System.out.println(Arrays.toString(parts));
-            if(operator.equals("+")){
-                answer[i] = (x + y == z) ? "O" : "X";
+        int i = 0;
+        while(i < my_str.length()){
+            if(i + n > my_str.length()){
+                answer.add(my_str.substring(i));
+                break;
             }else{
-                answer[i] = (x - y == z) ? "O" : "X";
+                answer.add(my_str.substring(i, i+n));
+                i += n;
             }
         }
 
