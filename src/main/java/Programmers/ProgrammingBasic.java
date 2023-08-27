@@ -6,25 +6,21 @@ public class ProgrammingBasic {
 
     public static void main(String[] args) throws Exception {
 
-        String my_str = "abc1Addfggg4556b";
-        int n = 6;
-        System.out.println(solution(my_str, n));
+        int[] array = {149, 180, 192, 170};
+        int height = 167;
+        System.out.println(solution(array, height));
     }
 
-    public static List<String> solution(String my_str, int n) {
-        List<String> answer = new ArrayList<>();
+    public static int solution(int[] array, int height) {
+        int answer = 0;
 
-        int i = 0;
-        while(i < my_str.length()){
-            if(i + n > my_str.length()){
-                answer.add(my_str.substring(i));
+        Arrays.sort(array);
+        for(int i = 0; i < array.length; i++){
+            if(array[i] > height){
+                answer = array.length - i;
                 break;
-            }else{
-                answer.add(my_str.substring(i, i+n));
-                i += n;
             }
         }
-
         return answer;
     }
 
