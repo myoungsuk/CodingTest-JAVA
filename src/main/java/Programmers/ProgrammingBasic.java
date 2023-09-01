@@ -4,26 +4,30 @@ import java.util.*;
 
 public class ProgrammingBasic {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args){
 
-        int[] array = {149, 180, 192, 170};
-        int height = 167;
-        System.out.println(solution(array, height));
+        int[] sides =  {3, 6};
+
+        System.out.println(solution(sides));
     }
 
-    public static int solution(int[] array, int height) {
+    public static int solution(int[] sides) {
         int answer = 0;
+        int min = Math.min(sides[0], sides[1]);
+        int max = Math.max(sides[0], sides[1]);
 
-        Arrays.sort(array);
-        for(int i = 0; i < array.length; i++){
-            if(array[i] > height){
-                answer = array.length - i;
-                break;
+        for(int i = min; i <= max; i++){
+            if(max < i + min){
+                answer++;
             }
         }
+
+        for(int i = max + 1; i <= max + min; i++){
+            if(i < max + min){
+                answer++;
+            }
+        }
+
         return answer;
     }
-
-
-
 }
