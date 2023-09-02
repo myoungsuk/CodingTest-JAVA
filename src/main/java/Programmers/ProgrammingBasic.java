@@ -1,33 +1,40 @@
 package Programmers;
 
-import java.util.*;
+import java.util.Arrays;
 
 public class ProgrammingBasic {
 
     public static void main(String[] args){
 
-        int[] sides =  {3, 6};
+         int a = 11;
+         int b = 22;
 
-        System.out.println(solution(sides));
+
+        System.out.println(solution(a, b));
     }
 
-    public static int solution(int[] sides) {
-        int answer = 0;
-        int min = Math.min(sides[0], sides[1]);
-        int max = Math.max(sides[0], sides[1]);
+    public static int solution(int a, int b) {
+        int gcd = gcd(a, b);
+        a /= gcd;
+        b /= gcd;
 
-        for(int i = min; i <= max; i++){
-            if(max < i + min){
-                answer++;
-            }
+        while(b%2 == 0){
+            b /= 2;
+        }
+        while(b % 5 == 0){
+            b /= 5;
         }
 
-        for(int i = max + 1; i <= max + min; i++){
-            if(i < max + min){
-                answer++;
-            }
-        }
-
-        return answer;
+        return b == 1 ? 1 : 2;
     }
+
+
+    public static int gcd(int a, int b) {
+        if ( b == 0){
+            return a;
+        }
+        return gcd(b, a % b);
+    }
+
+
 }
