@@ -1,40 +1,41 @@
 package Programmers;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class ProgrammingBasic {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
-         int a = 11;
-         int b = 22;
+        int[][] score = {{80, 70}, {90, 50}, {40 , 70}, {50, 80}};
 
-
-        System.out.println(solution(a, b));
+        System.out.println(Arrays.toString(solution(score)));
     }
 
-    public static int solution(int a, int b) {
-        int gcd = gcd(a, b);
-        a /= gcd;
-        b /= gcd;
+    public static int[] solution(int[][] score) {
+        int[] answer = {};
+        List<Integer> list = new ArrayList<>();
 
-        while(b%2 == 0){
-            b /= 2;
-        }
-        while(b % 5 == 0){
-            b /= 5;
+        for(int i = 0; i < score.length; i++){
+          list.add((score[i][0] + score[i][1]) / 2);
         }
 
-        return b == 1 ? 1 : 2;
+        List<Integer> sortedlist = new ArrayList<>(list);
+
+        System.out.println(list);
+
+        Collections.sort(sortedlist, Collections.reverseOrder());
+
+        System.out.println(list);
+
+        Map<Integer, Integer> rankMap = new HashMap<>();
+        int rank = 1;
+        for(Integer number : sortedlist) {
+            rankMap.put(number, rank);
+            rank++;
+        }
+
+        System.out.println(rankMap);
+        return answer;
     }
-
-
-    public static int gcd(int a, int b) {
-        if ( b == 0){
-            return a;
-        }
-        return gcd(b, a % b);
-    }
-
 
 }
