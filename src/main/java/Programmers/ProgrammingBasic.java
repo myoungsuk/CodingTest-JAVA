@@ -6,36 +6,19 @@ public class ProgrammingBasic {
 
     public static void main(String[] args) {
 
-        int[][] score = {{80, 70}, {90, 50}, {40 , 70}, {50, 80}};
-
-        System.out.println(Arrays.toString(solution(score)));
+        int chicken = 1081;
+        System.out.println(solution(chicken));
     }
 
-    public static int[] solution(int[][] score) {
-        int[] answer = {};
-        List<Integer> list = new ArrayList<>();
+    public static int solution(int chicken) {
+       int coupon = chicken;
+       int service = 0;
 
-        for(int i = 0; i < score.length; i++){
-          list.add((score[i][0] + score[i][1]) / 2);
-        }
+       while(coupon >= 10){
+           service += coupon / 10;
+           coupon = coupon / 10 + coupon % 10;
+       }
 
-        List<Integer> sortedlist = new ArrayList<>(list);
-
-        System.out.println(list);
-
-        Collections.sort(sortedlist, Collections.reverseOrder());
-
-        System.out.println(list);
-
-        Map<Integer, Integer> rankMap = new HashMap<>();
-        int rank = 1;
-        for(Integer number : sortedlist) {
-            rankMap.put(number, rank);
-            rank++;
-        }
-
-        System.out.println(rankMap);
-        return answer;
+       return service;
     }
-
 }
