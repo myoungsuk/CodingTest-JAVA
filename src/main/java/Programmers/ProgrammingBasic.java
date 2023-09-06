@@ -6,19 +6,27 @@ public class ProgrammingBasic {
 
     public static void main(String[] args) {
 
-        int chicken = 1081;
-        System.out.println(solution(chicken));
+        int[] common = {1, 2, 3, 4};
+        System.out.println(solution(common));
     }
 
-    public static int solution(int chicken) {
-       int coupon = chicken;
-       int service = 0;
+    public static int solution(int[] common) {
+       int check_first = common[1] - common[0];
 
-       while(coupon >= 10){
-           service += coupon / 10;
-           coupon = coupon / 10 + coupon % 10;
+       boolean check = true;
+       for(int i = 1; i < common.length; i++){
+           if(common[i] - common[i-1] != check_first) {
+               check = false;
+               break;
+           }
        }
 
-       return service;
+       if(check){
+           return common[common.length-1] + check_first;
+       }
+
+       int check_sec = common[1] / common[0];
+       return common[common.length -1] * check_sec;
+
     }
 }
