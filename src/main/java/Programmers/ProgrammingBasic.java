@@ -6,27 +6,18 @@ public class ProgrammingBasic {
 
     public static void main(String[] args) {
 
-        int[] common = {1, 2, 3, 4};
-        System.out.println(solution(common));
+        String N = "123";
+        System.out.println(solution(N));
     }
 
-    public static int solution(int[] common) {
-       int check_first = common[1] - common[0];
+    public static int solution(int n) {
+        String N = String.valueOf(n);
+        int answer = 0;
+        for (int i = 0; i < N.length(); i++) {
+            int c = N.charAt(i) - '0';
+            answer += c;
+        }
 
-       boolean check = true;
-       for(int i = 1; i < common.length; i++){
-           if(common[i] - common[i-1] != check_first) {
-               check = false;
-               break;
-           }
-       }
-
-       if(check){
-           return common[common.length-1] + check_first;
-       }
-
-       int check_sec = common[1] / common[0];
-       return common[common.length -1] * check_sec;
-
+        return answer;
     }
 }
