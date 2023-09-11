@@ -6,19 +6,19 @@ public class ProgrammingBasic {
 
     public static void main(String[] args) {
 
-        String s = "pPoooyY";
-        System.out.println(solution(s));
+        int[] numbers = {1, 2, 3, 4, 6, 7, 8, 0};
+
+        System.out.println(solution(numbers));
+;
     }
 
-    static boolean solution(String s) {
-        boolean answer = true;
+    public static int solution(int[] numbers) {
+        int answer = 45;
 
-        s = s.toLowerCase();
-        for(int i = 0; i < s.length(); i++){
-            if(s.charAt(i) == 'p'){
-
-            }
+        for(int i = 0; i < numbers.length; i++){
+            answer -= numbers[i];
         }
+
         return answer;
     }
 }
