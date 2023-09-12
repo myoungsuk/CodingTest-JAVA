@@ -6,23 +6,32 @@ public class ProgrammingBasic {
 
     public static void main(String[] args) {
 
-        int n = 45;
-        System.out.println(solution(n));
+        String s = "z";
+        int n = 1;
+        System.out.println(solution(s, n));
 ;
     }
 
-    public static int solution(int n) {
-        int answer = 0;
-
-        String num = Integer.toString(n, 3);
+    public static String solution(String s, int n) {
+        String alp_big = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String alp_small = "abcdefghijklmnopqrstuvwxyz";
 
         StringBuilder sb = new StringBuilder();
-        String str_num = String.valueOf(num);
-        for(int i = str_num.length() - 1; i >= 0; i--){
-            sb.append(str_num.charAt(i));
+
+        for(int i = 0; i < s.length(); i++){
+            char ch = s.charAt(i);
+            if(ch == ' '){
+                sb.append(" ");
+            }
+            for(int j = 0; j < alp_big.length(); j++){
+                if(alp_big.charAt(j) == ch){
+                  sb.append(alp_big.charAt((j+n) % alp_big.length()));
+                }else if(alp_small.charAt(j) == ch){
+                    sb.append(alp_small.charAt((j+n) % alp_small.length()));
+                }
+            }
         }
 
-        System.out.println(sb);
-        return answer;
+        return sb.toString();
     }
 }
