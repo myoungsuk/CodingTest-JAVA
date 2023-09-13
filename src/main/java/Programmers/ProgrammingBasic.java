@@ -6,32 +6,34 @@ public class ProgrammingBasic {
 
     public static void main(String[] args) {
 
-        String s = "z";
-        int n = 1;
-        System.out.println(solution(s, n));
+        int[] array = {1, 5, 2, 6, 3, 7, 4};
+        int[][] commands = {{2, 5, 3}, {4, 4, 1}, {1, 7, 3}};
+
+        System.out.println(Arrays.toString(solution(array, commands)));
 ;
     }
 
-    public static String solution(String s, int n) {
-        String alp_big = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        String alp_small = "abcdefghijklmnopqrstuvwxyz";
+    public static int[] solution(int[] array, int[][] commands) {
+        int[] answer = new int[commands.length];
+        List<List<Integer>> list = new ArrayList<>();
 
-        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < commands.length; i++){
+            int start = commands[i][0]-1;
+            int end = commands[i][1]-1;
+            List<Integer> small_list = new ArrayList<>();
 
-        for(int i = 0; i < s.length(); i++){
-            char ch = s.charAt(i);
-            if(ch == ' '){
-                sb.append(" ");
+            for(int j = start; j <= end; j++){
+                small_list.add(array[j]);
             }
-            for(int j = 0; j < alp_big.length(); j++){
-                if(alp_big.charAt(j) == ch){
-                  sb.append(alp_big.charAt((j+n) % alp_big.length()));
-                }else if(alp_small.charAt(j) == ch){
-                    sb.append(alp_small.charAt((j+n) % alp_small.length()));
-                }
-            }
+
+            list.add(small_list);
         }
 
-        return sb.toString();
+        for(int i = 0; i < list.size(); i++){
+            Collections.sort(list.get(i));
+            answer[i] += list.get(i).get((commands[i][2] - 1));
+        }
+
+        return answer;
     }
 }
