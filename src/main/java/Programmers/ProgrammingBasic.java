@@ -6,34 +6,27 @@ public class ProgrammingBasic {
 
     public static void main(String[] args) {
 
-        int[] array = {1, 5, 2, 6, 3, 7, 4};
-        int[][] commands = {{2, 5, 3}, {4, 4, 1}, {1, 7, 3}};
-
-        System.out.println(Arrays.toString(solution(array, commands)));
+        int[] numbers = {2, 1, 3, 4, 1};
+        System.out.println(Arrays.toString(solution(numbers)));
 ;
     }
 
-    public static int[] solution(int[] array, int[][] commands) {
-        int[] answer = new int[commands.length];
-        List<List<Integer>> list = new ArrayList<>();
+    public static int[] solution(int[] numbers) {
+        List<Integer> list = new ArrayList<>();
 
-        for(int i = 0; i < commands.length; i++){
-            int start = commands[i][0]-1;
-            int end = commands[i][1]-1;
-            List<Integer> small_list = new ArrayList<>();
-
-            for(int j = start; j <= end; j++){
-                small_list.add(array[j]);
+        for(int i = 0; i < numbers.length; i++){
+            int num = numbers[i];
+            for(int j = i + 1; j < numbers.length; j++){
+                int sum = num + numbers[j];
+                if(!list.contains(sum)){
+                    list.add(sum);
+                }
             }
-
-            list.add(small_list);
         }
+        Collections.sort(list);
 
-        for(int i = 0; i < list.size(); i++){
-            Collections.sort(list.get(i));
-            answer[i] += list.get(i).get((commands[i][2] - 1));
-        }
-
-        return answer;
+        int answer = 256 - 131 - 26 - 11 - 128;
+        System.out.println(answer);
+        return list.stream().mapToInt(Integer::intValue).toArray();
     }
 }
