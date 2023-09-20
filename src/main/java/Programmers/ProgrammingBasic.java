@@ -6,23 +6,23 @@ public class ProgrammingBasic {
 
     public static void main(String[] args) {
 
-        String s = "1 2 3 4";
+        String s = "3people unFollowed me";
         System.out.println(solution(s));
 ;
     }
 
     public static String solution(String s) {
-        List<Integer> numbers =  new ArrayList<>();
+        StringBuilder answer = new StringBuilder();
 
-        String[] split = s.split(" ");
+        for(int i = 1; i < s.length(); i++){
+            //현재 문자가 공백인 경우
+            if(s.charAt(i) == ' ') {
+                answer.append(s.charAt(i));
+                continue;
+            }
 
-        for(String number : split) {
-            numbers.add(Integer.parseInt(number));
+            //이전 문자가 공백인 경우
+
         }
-
-        int min = Collections.min(numbers);
-        int max = Collections.max(numbers);
-
-        return min + " " + max;
     }
 }
