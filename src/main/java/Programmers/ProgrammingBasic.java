@@ -6,33 +6,24 @@ public class ProgrammingBasic {
 
     public static void main(String[] args) {
 
-        String s = "3people unFollowed me";
-        System.out.println(solution(s));
+        int[] A = {1, 4, 2};
+        int[] B = {5, 4, 4};
+
+        System.out.println(solution(A, B));
 ;
     }
 
-    public static String solution(String s) {
-        StringBuilder answer = new StringBuilder();
+    public static int solution(int []A, int []B)
+    {
+        int answer = 0;
 
-        // 처음 문자 처리
-        char firstChar = s.charAt(0);
-        answer.append(Character.isAlphabetic(firstChar) ? Character.toUpperCase(firstChar) : firstChar);
+        Arrays.sort(A);
+        Arrays.sort(B);
 
-        for(int i = 1; i < s.length(); i++){
-            //현재 문자가 공백인 경우
-            if(s.charAt(i) == ' ') {
-                answer.append(s.charAt(i));
-                continue;
-            }
-
-            //이전 문자가 공백인 경우
-            if(s.charAt(i-1) == ' ') {
-                answer.append(Character.toUpperCase(s.charAt(i)));
-            }else {
-                answer.append(Character.toLowerCase(s.charAt(i)));
-            }
+        for(int i = 0; i < A.length; i++){
+            answer += A[i] * B[A.length - i - 1];
         }
 
-        return answer.toString();
+        return answer;
     }
 }
