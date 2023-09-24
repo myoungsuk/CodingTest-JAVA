@@ -6,22 +6,27 @@ public class ProgrammingBasic {
 
     public static void main(String[] args) {
 
-        int[] A = {1, 4, 2};
-        int[] B = {5, 4, 4};
-
-        System.out.println(solution(A, B));
+       String s = ")()(";
+        System.out.println(solution(s));
 ;
     }
 
-    public static int solution(int []A, int []B)
-    {
-        int answer = 0;
+    public static boolean solution(String s) {
+        boolean answer = true;
 
-        Arrays.sort(A);
-        Arrays.sort(B);
+        Stack stack = new Stack();
 
-        for(int i = 0; i < A.length; i++){
-            answer += A[i] * B[A.length - i - 1];
+        for(int i = 0; i < s.length(); i++){
+            char ch = s.charAt(i);
+            if(ch == ')' && !stack.isEmpty()){
+                stack.pop();
+            }else{
+                stack.push(ch);
+            }
+        }
+
+        if(!stack.isEmpty()){
+            return false;
         }
 
         return answer;
