@@ -1,14 +1,58 @@
-package 게시판정보;
+package jdbc02_R.게시판정보;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import javax.swing.JOptionPane;
 
 public class BbsDAO { // member테이블에 crud를 하고 싶으면 MemberDAO를 사용하면 됨.!
 	// DAO : db access object
 	// shop db member table에
 	// 접근해서 처리하는 객체
 
+	public void one(int no) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			System.out.println("1. 커넥터 연결 성공!!");
+
+			String url = "jdbc:mysql://localhost:3306/shop?useUnicode=true&serverTimezone=Asia/Seoul";
+			String user = "root";
+			String password = "1234";
+
+			Connection con = DriverManager.getConnection(url, user, password);
+			System.out.println("2. shop db연결 성공!!");
+
+			String sql = "select * from bbs where no = ? ";
+			PreparedStatement ps = con.prepareStatement(sql); //
+			ps.setInt(1, no); // 물음표 번호 1번에 id에 저장한 변수값을 넣어줘!
+			System.out.println("3. sql문 생성 성공!!");
+
+			ResultSet table = ps.executeQuery(); //테이블로 mysql로 받아온다. 
+			System.out.println("4. SQL문 mySQL로 전송 성공!!");
+			//System.out.println(table.next()); //table안에 데이터가 있으면 true
+			if(table.next()) { //table안에 검색결과인 row가 있는지 체크 
+				int no2 = table.getInt("no");
+				String title = table.getString("title");
+				String content = table.getString("content");
+				String writer = table.getString("writer");
+				//JOptionPane.showMessageDialog(null, title + " " + "");
+				System.out.println(no2);
+				System.out.println(title);
+				System.out.println(content);
+				System.out.println(writer);
+			}else {
+				System.out.println("검색결과가 없음.");
+			}
+		} catch (Exception e) { // Exception == Error
+			e.printStackTrace();// 에러정보를 추적해서 프린트해줘.!
+			System.out.println("에러발생함.!!!!");
+		}
+
+	} // one
+
+	
 	public void delete(int no) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -42,9 +86,9 @@ public class BbsDAO { // member테이블에 crud를 하고 싶으면 MemberDAO�
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			System.out.println("1. 커넥터 연결 성공!!");
 
-			String url = "jdbc:mysql://localhost:3306/shop3?useUnicode=true&serverTimezone=Asia/Seoul";
+			String url = "jdbc:mysql://localhost:3306/shop?useUnicode=true&serverTimezone=Asia/Seoul";
 			String user = "root";
-			String password = "myoung1249!";
+			String password = "1234";
 
 			Connection con = DriverManager.getConnection(url, user, password);
 			System.out.println("2. shop db연결 성공!!");
