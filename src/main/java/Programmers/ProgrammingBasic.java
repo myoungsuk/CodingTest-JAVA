@@ -6,29 +6,32 @@ public class ProgrammingBasic {
 
     public static void main(String[] args) {
 
-       String s = ")()(";
-        System.out.println(solution(s));
-;
+        String s = "110010101001";
+        System.out.println(Arrays.toString(solution(s)));
+
     }
 
-    public static boolean solution(String s) {
-        boolean answer = true;
+    public static int[] solution(String s) {
 
-        Stack stack = new Stack();
+        int transformCount = 0;
+        int zeroCount = 0;
 
-        for(int i = 0; i < s.length(); i++){
-            char ch = s.charAt(i);
-            if(ch == ')' && !stack.isEmpty()){
-                stack.pop();
-            }else{
-                stack.push(ch);
+        while(!s.equals("1")) {
+            int oneCount = 0;
+            for(char c : s.toCharArray()) {
+                if (c == '1') {
+                    oneCount++;
+                } else {
+                    zeroCount++;
+                }
             }
+
+            s = Integer.toBinaryString(oneCount);
+            transformCount++;
         }
 
-        if(!stack.isEmpty()){
-            return false;
-        }
 
-        return answer;
+        return new int[]{transformCount, zeroCount};
     }
+
 }

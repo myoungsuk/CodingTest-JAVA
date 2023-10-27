@@ -1,10 +1,10 @@
 package jdbc03_DBCP.메서드연습;
 
 public class MemberVO {
-	String id;
-	String pw;
-	String name;
-	String tel;
+	private String id;
+	private String pw;
+	private String name;
+	private String tel;
 	
 	//가방에 데이터를 하나씩 넣는 기능 => 함수(메서드)
 	public void setId(String id) { //setter

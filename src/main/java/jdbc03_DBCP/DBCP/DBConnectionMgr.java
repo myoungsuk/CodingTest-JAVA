@@ -28,11 +28,11 @@ import java.sql.*;
 import java.util.Properties;
 import java.util.Vector;
 public class DBConnectionMgr {
-    private Vector connections = new Vector(10);
-    private String _driver = "com.mysql.jdbc.Driver",
-    _url = "jdbc:mysql://localhost:3306/shop3?useUnicode=true&serverTimezone=Asia/Seoul",
+    private Vector connections = new Vector(10); //Connection 10
+    private String _driver = "com.mysql.cj.jdbc.Driver",
+    _url = "jdbc:mysql://localhost:3306/shop?useUnicode=true&serverTimezone=Asia/Seoul",
     _user = "root",
-    _password = "myoung1249!";
+    _password = "1234";
     private boolean _traceOn = false;
     private boolean initialized = false;
     private int _openConnections = 10;
@@ -276,7 +276,7 @@ public class DBConnectionMgr {
 }
 
 class ConnectionObject {
-    public java.sql.Connection connection = null;
+    public Connection connection = null;
     public boolean inUse = false;
 
     public ConnectionObject(Connection c, boolean useFlag) {

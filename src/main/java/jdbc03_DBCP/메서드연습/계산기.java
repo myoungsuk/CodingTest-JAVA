@@ -48,6 +48,7 @@ public class 계산기 {
 		bag.setPw(pw);
 		bag.setName(name);
 		bag.setTel(tel);
+		//System.out.println(bag);
 		return bag;
 	}
 	

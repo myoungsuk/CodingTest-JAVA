@@ -1,11 +1,16 @@
 package jdbc03_DBCP.DBCP;
 
-import jdbc02_R.회원정보.MemberDAO;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class 회원정보UI {
 
@@ -38,7 +43,6 @@ public class 회원정보UI {
 		JButton b2 = new JButton("회원탈퇴 요청");
 		JButton b3 = new JButton("회원수정 요청");
 		JButton b4 = new JButton("회원검색 요청");
-
 		b1.setBackground(Color.yellow);
 		b1.setForeground(Color.BLUE);
 		b1.setOpaque(true);
@@ -104,40 +108,48 @@ public class 회원정보UI {
 				String pw = t2.getText();
 				String name = t3.getText();
 				String tel = t4.getText();
-				
+
 				// 2. db처리하는 부품을 사용
-				jdbc02_R.회원정보.MemberDAO dao = new jdbc02_R.회원정보.MemberDAO();
-				
+				MemberDAO dao = new MemberDAO();
+
+				//보내는 쪽: 가방만들고 데이터 넣고, 전달 
+				MemberVO bag = new MemberVO();
+				bag.setId(id);
+				bag.setPw(pw);
+				bag.setName(name);
+				bag.setTel(tel);
 				// 3. db처리하는 부품에 입력한 값을 주면서 db해달라고 요청
-				dao.insert(id, pw, name, tel);
+				int result = dao.insert(bag); //1
+				if(result == 1) {
+					JOptionPane.showMessageDialog(f, "회원가입성공!!");
+				}
 			}
 		});
-		
+
 		b2.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//탈퇴할 id를 입력받으세요.!
+				// 탈퇴할 id를 입력받으세요.!
 				String id = JOptionPane.showInputDialog("탈퇴할 id를 입력하세요");
-				//DAO를 이용합니다.
-				jdbc02_R.회원정보.MemberDAO dao = new jdbc02_R.회원정보.MemberDAO();
-				//id를 전달하면서 delete()
+				// DAO를 이용합니다.
+				MemberDAO dao = new MemberDAO();
+				// id를 전달하면서 delete()
 				dao.delete(id);
-				
 			}
 		});
-		
+
 		b3.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//b3을 눌렀을 때 처리내용을 코딩 
-				//입력한 값 2개를 가지고 와서 저장 
+				// b3을 눌렀을 때 처리내용을 코딩
+				// 입력한 값 2개를 가지고 와서 저장
 				String id = JOptionPane.showInputDialog("수정할 Id");
 				String tel = JOptionPane.showInputDialog("수정될 Tel");
-				//DAO를 이용해서 db처리 
-				jdbc02_R.회원정보.MemberDAO dao = new jdbc02_R.회원정보.MemberDAO();
-				//sql문을 전송 
+				// DAO를 이용해서 db처리
+				MemberDAO dao = new MemberDAO();
+				// sql문을 전송
 				dao.update(id, tel);
 			}
 		});
@@ -146,16 +158,17 @@ public class 회원정보UI {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//b4를 눌렀을 때 처리내용을 코딩
-				//입력한 id를 가지고 와서 저장
-				String id = JOptionPane.showInputDialog("검색할 Id");
-				//DAO를 이용해서 db처리
-				jdbc02_R.회원정보.MemberDAO dao = new MemberDAO();
-				//sql문을 전송
-				dao.selectOne(id);
+				//검색하고 싶은 Id를 입력받아 저장 
+				String id = JOptionPane.showInputDialog("id를 입력");
+				//MemberDAO를 사용
+				MemberDAO dao = new MemberDAO(); //jdbc 1-2
+				//one(id)호출, id를 주면서 row 하나 검색 요청  
+				MemberVO bag = dao.one(id); //bag
+				JOptionPane.showMessageDialog(f, bag);
 			}
 		});
 
+		////////////////
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setVisible(true); // 맨끝에!!
 

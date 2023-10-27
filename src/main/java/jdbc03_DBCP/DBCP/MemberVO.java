@@ -1,10 +1,10 @@
 package jdbc03_DBCP.DBCP;
 
 public class MemberVO {
-	String id;
-	String pw;
-	String name;
-	String tel;
+	private String id;
+	private String pw;
+	private String name;
+	private String tel;
 	
 	//가방에 데이터를 하나씩 넣는 기능 => 함수(메서드)
 	public void setId(String id) { //setter
@@ -31,6 +31,10 @@ public class MemberVO {
 	}
 	public void setTel(String tel) {
 		this.tel = tel;
+	}
+	@Override
+	public String toString() {
+		return "가방에 들어있는 데이터 [id=" + id + ", pw=" + pw + ", name=" + name + ", tel=" + tel + "]";
 	}
 	
 } //class

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component>
+	<contentEntry url="file://$MODULE_DIR$/../.."/>
+	<contentEntry url="file://$MODULE_DIR$/../.."/>
+	<levels>
+		<level name="javax.servlet.api" value="project"/>
+		<level name="jsp-api" value="project"/>
+	</levels>
+</component>
