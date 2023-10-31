@@ -6,32 +6,40 @@ public class ProgrammingBasic {
 
     public static void main(String[] args) {
 
-        String s = "110010101001";
-        System.out.println(Arrays.toString(solution(s)));
+        int n = 78;
+        System.out.println(solution(n));
 
     }
 
-    public static int[] solution(String s) {
+    public static int solution(int n) {
+        int answer = 0;
 
-        int transformCount = 0;
-        int zeroCount = 0;
-
-        while(!s.equals("1")) {
-            int oneCount = 0;
-            for(char c : s.toCharArray()) {
-                if (c == '1') {
-                    oneCount++;
-                } else {
-                    zeroCount++;
-                }
+        String binaryN = Integer.toBinaryString(n);
+        int count = 0;
+        for(int i = 0; i < binaryN.length(); i++) {
+            if(binaryN.charAt(i) == '1'){
+                count++;
             }
-
-            s = Integer.toBinaryString(oneCount);
-            transformCount++;
         }
 
-
-        return new int[]{transformCount, zeroCount};
+        while(true){
+            n++;
+            int count2 = 0;
+            String check = Integer.toBinaryString(n);
+            for(int i = 0; i < check.length(); i++){
+                if(count2 > count){
+                    break;
+                }
+                if(check.charAt(i) == '1'){
+                    count2++;
+                }
+            }
+            if(count == count2){
+                answer = n;
+                break;
+            }
+        }
+        return answer;
     }
 
 }
