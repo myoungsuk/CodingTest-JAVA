@@ -6,26 +6,28 @@ public class ProgrammingBasic {
 
     public static void main(String[] args) {
 
-        int n = 5;
-        System.out.println(solution(n));
+        String s = "baabaa";
+        System.out.println(solution(s));
 
     }
 
-    public static int solution(int n) {
+    public static int solution(String s)
+    {
+        Stack<Character> stack = new Stack<>();
 
-        if(n == 1 || n == 2){
+        for(int i = 0; i < s.length(); i++){
+            if(!stack.isEmpty() && stack.peek() == s.charAt(i)){
+                stack.pop();
+            } else {
+                stack.push(s.charAt(i));
+            }
+        }
+
+        if(stack.isEmpty()) {
             return 1;
+        }else {
+            return 0;
         }
-
-        int[] fibo = new int[n+1];
-        fibo[1] = 1;
-        fibo[2] = 1;
-        for(int i = 3; i <= n; i++){
-            fibo[i] = (fibo[i-1] + fibo[i-2]) % 1234567;
-        }
-
-        return fibo[n];
 
     }
-
 }
