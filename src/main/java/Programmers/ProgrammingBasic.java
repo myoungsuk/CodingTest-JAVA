@@ -6,28 +6,27 @@ public class ProgrammingBasic {
 
     public static void main(String[] args) {
 
-        String s = "baabaa";
-        System.out.println(solution(s));
+        int brown = 10;
+        int yellow = 2;
+        System.out.println(Arrays.toString(solution(brown, yellow)));
 
     }
 
-    public static int solution(String s)
-    {
-        Stack<Character> stack = new Stack<>();
+    public static int[] solution(int brown, int yellow) {
+        int total = brown + yellow;
+        int width = 0;
+        int height = 0;
 
-        for(int i = 0; i < s.length(); i++){
-            if(!stack.isEmpty() && stack.peek() == s.charAt(i)){
-                stack.pop();
-            } else {
-                stack.push(s.charAt(i));
+        for(int i = 3; i <= total/3; i++) {
+            if(total % i == 0) {
+                height = i;
+                width = total / i;
+
+                if((width-2) * (height-2) == yellow) {
+                    break;
+                }
             }
         }
-
-        if(stack.isEmpty()) {
-            return 1;
-        }else {
-            return 0;
-        }
-
+        return new int[] {width, height};
     }
 }
