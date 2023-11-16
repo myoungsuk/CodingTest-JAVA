@@ -6,27 +6,44 @@ public class ProgrammingBasic {
 
     public static void main(String[] args) {
 
-        int brown = 10;
-        int yellow = 2;
-        System.out.println(Arrays.toString(solution(brown, yellow)));
+        int n = 3;
+        String[] words = {"tank", "kick", "know", "wheel", "land", "dream", "mother", "robot", "tank"};
+        System.out.println(Arrays.toString(solution(n, words)));
 
     }
 
-    public static int[] solution(int brown, int yellow) {
-        int total = brown + yellow;
-        int width = 0;
-        int height = 0;
+    public static int[] solution(int n, String[] words) {
 
-        for(int i = 3; i <= total/3; i++) {
-            if(total % i == 0) {
-                height = i;
-                width = total / i;
+        HashSet<String> set = new HashSet<>();
 
-                if((width-2) * (height-2) == yellow) {
+        int lastPerson = 0;
+        int turn = 0;
+        String prevWord = "";
+
+        for (int i = 0; i < words.length; i++) {
+
+            String currentWord = words[i];
+
+            if (i > 0) {
+                String last = prevWord.substring(prevWord.length() - 1);
+                String first = currentWord.substring(0, 1);
+
+
+                if (!last.equals(first) || set.contains(currentWord)) {
+                    lastPerson = (i % n) + 1;
+                    turn = (i / n) + 1;
                     break;
                 }
             }
+
+            set.add(currentWord);
+            prevWord = currentWord;
         }
-        return new int[] {width, height};
+
+        if (lastPerson == 0) {
+            return new int[]{0, 0};
+        }
+
+        return new int[]{lastPerson, turn};
     }
 }
