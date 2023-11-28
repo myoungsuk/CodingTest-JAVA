@@ -6,31 +6,41 @@ public class ProgrammingBasic {
 
     public static void main(String[] args) {
 
-        int n = 5;
-        int[] arr1 = {9, 20, 28, 18, 11};
-        int[] arr2 = {30, 1, 21, 17, 28};
+        int N = 5000;
 
-        System.out.println(Arrays.toString(solution(n, arr1, arr2)));
+        System.out.println(solution(N));
 
     }
 
-    public static String[] solution(int n, int[] arr1, int[] arr2) {
+    public static int solution(int n) {
+        int ans = n;
+        int count = 0;
 
-        String[] answer = new String[n];
+        //한 번에 K칸을 앞으로 점프, 현재까지온거리 * 2 에 해당하는 위치로 순간이동
+        //순간이동은 건전지 사용량 x
+        //K칸을 점프하는건 K만큼의 건전지 사용량이 듬
+        //순간이동을 하는게 더 효율적
+        //거리가 N만큼 떨어져 있는 곳으로 이동
+        //점프를 하는건 최소화하기
+        //사용하려는 건전지 사용량의 최솟값 구하기
 
-        for(int i = 0; i < n; i++){
+        //2500 1250 675 점프(674) 337 점프(336) 168 84 42 21 점프(20)
+        //10 5 점프(4) 2 1 점프(0)
 
-            String binary1 = String.format("%" + n + "s", Integer.toBinaryString(arr1[i]).replace(' ', '0'));
-            String binary2 = String.format("%" + n + "s", Integer.toBinaryString(arr2[i]).replace(' ', '0'));
+        //홀수일 경우 1씩 증가함 1씩 증가할때마다 count++
 
-            StringBuilder row = new StringBuilder();
+        while(ans != 0){
 
-            for(int j = 0; j < n; j++){
-                row.append((binary1.charAt(j) == '1' || binary2.charAt(j) == '1') ? "#" : " ");
+            if(ans % 2 != 0) {
+                ans--;
+                count++;
+
+            }else {
+                ans /= 2;
             }
-            answer[i] = row.toString();
+
         }
 
-        return answer;
+        return count;
     }
 }
