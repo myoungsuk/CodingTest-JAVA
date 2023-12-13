@@ -1,0 +1,11 @@
+select
+    INS.ANIMAL_ID,
+    INS.NAME
+from
+    ANIMAL_INS INS
+join
+    ANIMAL_OUTS OUTS on INS.ANIMAL_ID = OUTS.ANIMAL_ID
+where
+    INS.DATETIME > OUTS.DATETIME
+order by
+    INS.DATETIME;
