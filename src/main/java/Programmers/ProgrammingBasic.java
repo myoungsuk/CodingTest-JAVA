@@ -6,31 +6,31 @@ public class ProgrammingBasic {
 
     public static void main(String[] args) {
 
-        String[] participant = {"leo", "kiki", "eden"};
-        String[] completion = {"eden", "kiki"};
-
-        System.out.println((solution(participant, completion)));
+        int[] scoville = {1, 2, 3, 9, 10, 12};
+        int K = 7;
+        System.out.println(solution(scoville, K));
 
     }
 
-    public static String solution(String[] participant, String[] completion) {
-        HashMap<String, Integer> hashMap = new HashMap<>();
+    public static int solution(int[] scoville, int K) {
+        int answer = 0;
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
 
-        for(String player : participant){
-            hashMap.put(player, hashMap.getOrDefault(player,0) + 1);
+        for(int value : scoville){
+            pq.add(value);
         }
 
-        for(String player : completion) {
-            hashMap.put(player, hashMap.get(player) - 1);
-        }
-
-        for(String key : hashMap.keySet()){
-            if(hashMap.get(key) != 0){
-                return key;
+        while(pq.peek() < K){
+            if(pq.size() < 2){
+                return -1;
             }
+            int first = pq.poll();
+            int second = pq.poll();
+
+            pq.add(first + second * 2);
+            answer++;
         }
 
-        return null;
-
+        return answer;
     }
 }
