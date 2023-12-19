@@ -6,31 +6,24 @@ public class ProgrammingBasic {
 
     public static void main(String[] args) {
 
-        int[] scoville = {1, 2, 3, 9, 10, 12};
-        int K = 7;
-        System.out.println(solution(scoville, K));
+        int[] numbers = {1, 1, 1, 1, 1};
+        int target = 3;
+        System.out.println(solution(numbers, target));
 
     }
 
-    public static int solution(int[] scoville, int K) {
-        int answer = 0;
-        PriorityQueue<Integer> pq = new PriorityQueue<>();
+    public static int solution(int[] numbers, int target) {
 
-        for(int value : scoville){
-            pq.add(value);
+        return dfs(numbers, 0, 0, target);
+    }
+
+    private static int dfs(int[] numbers, int node, int sum, int target) {
+        if(node == numbers.length) {
+            return sum == target ? 1 : 0;
         }
 
-        while(pq.peek() < K){
-            if(pq.size() < 2){
-                return -1;
-            }
-            int first = pq.poll();
-            int second = pq.poll();
+        return dfs(numbers, node + 1, sum + numbers[node], target)
+                + dfs(numbers, node+1, sum - numbers[node], target);
 
-            pq.add(first + second * 2);
-            answer++;
-        }
-
-        return answer;
     }
 }
