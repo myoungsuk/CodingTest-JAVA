@@ -11,15 +11,15 @@ import java.util.concurrent.TimeUnit;
 public class TradeProgram {
 
     // 결과를 저장할 파일 경로입니다.
-    private static final String OUTPUT_FILE = "/Users/Kang/uploads/temp/TradeProgram_Result.txt";
+    private static final String OUTPUT_FILE = "/Users/Kang/uploads/temp/sample_data.txt";
     private static final long[] DEFAULT_PRICES = new long[]{0, 0, 0, 0}; // 가격 정보가 없는 경우 기본값
-    private static final int LINES_PER_THREAD = 8831; // 각 스레드가 처리할 라인 수
+    private static final int LINES_PER_THREAD = 2000000; // 각 스레드가 처리할 라인 수
 
 
     public static void main(String[] args) {
         // 출력 시간 계산
-//        long startTime = System.nanoTime(); // 측정 시작 시간
-        String filePath = "/Users/Kang/uploads/temp/Hoa_data.doc"; //입력 파일 경로
+        long startTime = System.nanoTime(); // 측정 시작 시간
+        String filePath = "/Users/Kang/uploads/temp/sample_data2.doc"; //입력 파일 경로
 
         try {
             // 거래 데이터 파일을 읽어서 처리합니다.
@@ -33,8 +33,8 @@ public class TradeProgram {
         }
 
         // 출력 시간 계산
-//        long endTime = System.nanoTime();
-//        System.out.println("실행 시간: " + (endTime - startTime) / 1000000000.0 + "초");
+        long endTime = System.nanoTime();
+        System.out.println("실행 시간: " + (endTime - startTime) / 1000000000.0 + "초");
 
     }
 
@@ -74,10 +74,10 @@ public class TradeProgram {
         Map<String, ConcurrentHashMap<String, long[]>> aggregatedData = new ConcurrentHashMap<>();
         List<String> lines = Files.readAllLines(Paths.get(filePath));
         int totalLines = lines.size();
-//        System.out.println("lines_per_thread = " + LINES_PER_THREAD); // 쓰레드당 처리하는 라인수
-//        System.out.println("totalLines = " + totalLines); // 데이터 전체 라인수
+        System.out.println("lines_per_thread = " + LINES_PER_THREAD); // 쓰레드당 처리하는 라인수
+        System.out.println("totalLines = " + totalLines); // 데이터 전체 라인수
         int numberOfThreads = (int) Math.ceil(totalLines / (double) LINES_PER_THREAD);
-//        System.out.println("numberOfThreads = " + numberOfThreads); // 쓰레드 개수
+        System.out.println("numberOfThreads = " + numberOfThreads); // 쓰레드 개수
         ExecutorService executor = Executors.newFixedThreadPool(numberOfThreads);
 
         for (int i = 0; i < numberOfThreads; i++) {
@@ -114,9 +114,6 @@ public class TradeProgram {
         }
         return stockCode.toString();
     }
-
-
-
     private static String extractTime(String line) {
         StringBuilder time = new StringBuilder();
         for (int i = 0; i < 15; i++) {
@@ -127,8 +124,6 @@ public class TradeProgram {
         }
         return time.toString();
     }
-
-
     private static long extractPrice(String line) {
         long price = 0;
         for (int i = 26; i < 35; i++) {
